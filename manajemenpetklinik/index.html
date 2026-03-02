@@ -29,6 +29,18 @@
                         <a class="nav-link" href="#registration">Registrasi</a>
                     </li>
                 </ul>
+                <!-- Wishlist Button -->
+                <button class="btn btn-outline-warning btn-sm me-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#wishlistModal"
+                    onclick="tampilkanwishlist()">
+                    ⭐ Wishlist (<span id="wishlist-count">0</span>)
+                </button>
+
+                <!-- Dark Mode Button -->
+                <button id="btn-theme" class="btn btn-outline-light btn-sm">
+                    Mode Gelap
+                </button>
             </div>
         </div>
     </nav>
@@ -100,65 +112,111 @@
         </div>
     </section>
 
-    <section id="produk">
-    <div class="container">
-        <h3 class="mb-4">Daftar Kebutuhan Hewan</h3>
+    <section id="produk" class="py-5">
+        <div class="container">
+            <h3 class="mb-4">Daftar Kebutuhan Hewan</h3>
 
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card product-card">
-                    <img src="assets/royalCanin.jpeg" class="card-img-top" alt="Royal canin">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card product-card h-100">
+                        <img src="assets/royalCanin.jpeg" class="card-img-top" alt="Royal canin">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Royal Canin Kitten</h5>
-                        <p class="card-text harga-text">Harga: Rp. 65.000</p>
-                        <p class="card-text stok-text">Stok: 10</p>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Royal Canin Kitten</h5>
+                            <p class="card-text harga-text">Harga: Rp. 65.000</p>
+                            <p class="card-text stok-text">Stok: 10</p>
 
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-detail w-50 me-2">
-                                Beli
-                            </button>
+                            <div class="d-flex justify-content-between mt-auto">
+                                <button class="btn btn-primary btn-detail w-50 me-2">
+                                    Beli
+                                </button>
+
+                                <button class="btn btn-outline-danger btn-wishlist w-50">
+                                    ❤️ Wishlist
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card product-card">
-                    <img src="assets/rabbitFood.jpeg" class="card-img-top" alt="Rabbit Food">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Rabbit Food</h5>
-                        <p class="card-text harga-text">Harga: Rp. 85.000</p>
-                        <p class="card-text stok-text">Stok: 12</p>
+                <div class="col-md-4">
+                    <div class="card product-card h-100">
+                        <img src="assets/rabbitFood.jpeg" class="card-img-top" alt="Rabbit Food">
 
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-detail w-50 me-2">
-                                Beli
-                            </button>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Rabbit Food</h5>
+                            <p class="card-text harga-text">Harga: Rp. 85.000</p>
+                            <p class="card-text stok-text">Stok: 12</p>
+
+                            <div class="d-flex justify-content-between mt-auto">
+                                <button class="btn btn-primary btn-detail w-50 me-2">
+                                    Beli
+                                </button>
+
+                                <button class="btn btn-outline-danger btn-wishlist w-50">
+                                    ❤️ Wishlist
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card product-card">
-                    <img src="assets/mainan.jpeg" class="card-img-top" alt="Mainan">
 
-                    <div class="card-body">
-                        <h5 class="card-title">Mainan Kucing</h5>
-                        <p class="card-text harga-text">Harga: Rp. 100.000</p>
-                        <p class="card-text stok-text">Stok: 20</p>
+                <div class="col-md-4">
+                    <div class="card product-card h-100">
+                        <img src="assets/mainan.jpeg" class="card-img-top" alt="Mainan">
 
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-detail w-50 me-2">
-                                Beli
-                            </button>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Mainan Kucing</h5>
+                            <p class="card-text harga-text">Harga: Rp. 100.000</p>
+                            <p class="card-text stok-text">Stok: 20</p>
+
+                            <div class="d-flex justify-content-between mt-auto">
+                                <button class="btn btn-primary btn-detail w-50 me-2">
+                                    Beli
+                                </button>
+
+                                <button class="btn btn-outline-danger btn-wishlist w-50">
+                                    ❤️ Wishlist
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <div class="modal fade" id="wishlistModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Daftar Wishlist Saya</h5>
+                <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <ul class="list-group" id="daftar-wishlist">
+                </ul>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+                    Tutup
+                </button>
+
+                <button type="button"
+                    class="btn btn-danger"
+                    onclick="hapusWishlist()">
+                    Kosongkan
+                </button>
+            </div>
+
+        </div>
     </div>
-</section>
+</div>
 
     <section id="registration" class="registration-section py-5">
         <div class="container">
@@ -279,5 +337,77 @@
             });
         });
     </script>
+
+    <script>
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    // mengupdate angka wishlist
+    function updateWishlistCount() {
+        document.getElementById("wishlist-count").innerText = wishlist.length;
+    }
+
+    // menambahkan wishlist
+    function tambahKeWishlist(namaProduk) {
+        if (!wishlist.includes(namaProduk)) {
+            wishlist.push(namaProduk);
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+            updateWishlistCount();
+            alert(namaProduk + " ditambahkan ke Wishlist");
+        } else {
+            alert("Produk sudah ada di Wishlist!");
+        }
+    }
+
+    // Menampilkan wishlist yang ada
+    function tampilkanwishlist() {
+        const daftar = document.getElementById("daftar-wishlist");
+        daftar.innerHTML = "";
+
+        if (wishlist.length === 0) {
+            daftar.innerHTML = '<li class="list-group-item">Wishlist kosong</li>';
+            return;
+        }
+
+        wishlist.forEach((item, index) => {
+            daftar.innerHTML += `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${item}
+                    <button class="btn btn-sm btn-danger" onclick="hapusItem(${index})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </li>
+            `;
+        });
+    }
+
+    // Hapus satu item
+    function hapusItem(index) {
+        wishlist.splice(index, 1);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        tampilkanwishlist();
+        updateWishlistCount();
+    }
+
+    // Kosongkan wishlist
+    function hapusWishlist() {
+        wishlist = [];
+        localStorage.removeItem("wishlist");
+        tampilkanwishlist();
+        updateWishlistCount();
+    }
+
+    // Event tombol wishlist di setiap produk
+    document.querySelectorAll(".btn-wishlist").forEach(button => {
+        button.addEventListener("click", function() {
+            const card = this.closest(".card-body");
+            const namaProduk = card.querySelector(".card-title").innerText;
+            tambahKeWishlist(namaProduk);
+        });
+    });
+
+    // Jalankan saat pertama load
+    updateWishlistCount();
+    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -28,6 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#registration">Registrasi</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="login.php" class="btn btn-warning btn-sm">Login</a>
+                    </li>
                 </ul>
                 <!-- Wishlist Button -->
                 <button class="btn btn-outline-warning btn-sm me-2"

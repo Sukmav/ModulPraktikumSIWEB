@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($users[$username]) && $users[$username] === $password) {
         $_SESSION['user'] = $username;
         if ($remember) {
-            setcookie('username', $username, time() + (30 * 24 * 60 * 60), '/'); // 30 hari
+            setcookie('username', $username, time() + (30 * 24 * 60 * 60), '/'); 
         } else {
             setcookie('username', '', time() - 3600, '/');
         }

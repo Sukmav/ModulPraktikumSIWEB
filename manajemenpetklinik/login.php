@@ -59,14 +59,13 @@ $error = $_GET['error'] ?? '';
                 </div>
 
                 <div class="form-check mb-4">
-                    <input type="checkbox" id="showPassword" class="form-check-input">
-                    <label class="form-check-label" for="showPassword">
-                        Tampilkan Password
+                    <input type="checkbox" id="remember" name="remember" class="form-check-input">
+                    <label class="form-check-label" for="remember">
+                        Ingat Saya
                     </label>
                 </div>
 
-                <button type="submit" class="btn btn-login w-100 mb-3">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
+                <button type="submit" class="btn btn-login w-100 mb-3">Login
                 </button>
             </form>
             </div>

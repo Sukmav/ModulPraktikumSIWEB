@@ -5,28 +5,75 @@ if (isset($_SESSION['user'])) {
     header("Location: index.php");
     exit();
 }
+
+$error = $_GET['error'] ?? '';
 ?>
 
-<form method="POST" actioin="controller/proses_login.php">
-    <div class="mb-3">
-        <label class="form-label">Username</label>
-        <input type="text" name="username" class="form-control"
-            value="<?php echo $_COOKIE['username'] ?? ''; ?>" required>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistem Manajemen Pet Clinic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.php">
+                <i class="bi bi-hospital"></i> Pet Clinic
+            </a>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Login</h1>
+            </div>
+
+            <?php if ($error): ?>
+                <div class="alert alert-error" role="alert">
+                    <i class="bi bi-exclamation-circle"></i> <?php echo htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
+
+            <form method="POST" action="controller/proses_login.php">
+                <div class="mb-3">
+                    <label for="username" class="form-label">
+                        <i class="bi bi-person"></i> Username
+                    </label>
+                    <input type="text" id="username" name="username" class="form-control"
+                        value="<?php echo htmlspecialchars($_COOKIE['username'] ?? ''); ?>" 
+                        placeholder="Masukkan username" required autofocus>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+                        <i class="bi bi-lock"></i> Password
+                    </label>
+                    <input type="password" id="password" name="password" class="form-control" 
+                        placeholder="Masukkan password" required>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input type="checkbox" id="showPassword" class="form-check-input">
+                    <label class="form-check-label" for="showPassword">
+                        Tampilkan Password
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-login w-100 mb-3">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </button>
+            </form>
+            </div>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" required>
-    </div>
-
-    <div class="form-check mb-3">
-        <input type="checkbox" name="remember" class="form-check-input">
-        <label class="form-check-label" for="remember">Remember Me</label>
-    </div>
-
-    <button type="submit" class="btn btn-warning w-100">Login</button>
-
-    <div class="text-center mt-3">
-        <a href="index.php" class="text-white">Kembali ke Beranda</a>
-    </div>
-</form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,7 +19,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto me-3">
                     <li class="nav-item">
                         <a class="nav-link active" href="#home">Beranda</a>
                     </li>
@@ -28,19 +29,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#registration">Registrasi</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="login.php" class="btn btn-warning btn-sm">Login</a>
-                    </li>
                 </ul>
-                <!-- Wishlist Button -->
+
+                <?php if (isset($_SESSION['user'])): ?>
+                    <span class="badge bg-light text-dark me-3">
+                        <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['user']); ?>
+                    </span>
+                <?php else: ?>
+                    <div class="d-flex gap-2 align-items-center">
+                <?php endif; ?>
                 <button class="btn btn-outline-warning btn-sm me-2"
                     data-bs-toggle="modal"
                     data-bs-target="#wishlistModal"
                     onclick="tampilkanwishlist()">
                     ⭐ Wishlist (<span id="wishlist-count">0</span>)
                 </button>
-
-                <!-- Dark Mode Button -->
+                <?php if (isset($_SESSION['user'])): ?>
+                    <a href="controller/logout.php" class="btn btn-danger btn-sm me-2">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                <?php else: ?>
+                    <a href="login.php" class="btn btn-warning btn-sm me-2">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                    </div>
+                <?php endif; ?>
                 <button id="btn-theme" class="btn btn-outline-light btn-sm">
                     Mode Gelap
                 </button>
